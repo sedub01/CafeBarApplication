@@ -1,9 +1,9 @@
 package bar.controllers;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import bar.coffee.Coffee;
-import bar.coffee.CoffeeIngredient;
-import bar.coffee.CoffeeIngredient.Type;
+import bar.coffee.Ingredient;
+import bar.coffee.Ingredient.Type;
+import bar.data.IngredientRepository;
 import bar.orders.CoffeeOrder;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -26,29 +27,28 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes("coffeeOrder")
 public class DesignCoffeeController {
     
+    private final IngredientRepository ingredientRepo;
+
+    @Autowired
+    public DesignCoffeeController(
+        IngredientRepository ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
+    }
+
     @ModelAttribute
     public void addIngredientsToModel(Model model){
-        List<CoffeeIngredient> ingredients = Arrays.asList( //like a database
-            new CoffeeIngredient("ESP", "Espresso", Type.ESPRESSO, 0),
-            new CoffeeIngredient("UMI", "Cow Milk", Type.MILK, 0),
-            new CoffeeIngredient("AMI", "Almond Milk", Type.MILK, 0),
-            new CoffeeIngredient("SUG", "Sugar", Type.SUGAR, 0),
-            new CoffeeIngredient("WAT", "Water", Type.WATER, 0),
-            new CoffeeIngredient("CRE", "Cream", Type.CREAM, 0),
-            new CoffeeIngredient("MCH", "Milk Chocolate", Type.CHOCOLATE, 0),
-            new CoffeeIngredient("BCH", "Bitter Chocolate", Type.CHOCOLATE, 0),
-            new CoffeeIngredient("CTO", "Chocolate", Type.TOPPING, 0),
-            new CoffeeIngredient("MTO", "Marshmallow", Type.TOPPING, 0)
-        );
-        Type[] types = CoffeeIngredient.Type.values();
+        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
+        Type[] types = Ingredient.Type.values();
         for (Type type: types){
             model.addAttribute(type.toString().toLowerCase(), 
                 filterByType(ingredients, type));
         }
     }
 
-    private Iterable<CoffeeIngredient> filterByType(List<CoffeeIngredient> ingredients, Type type) {
-        return ingredients.stream().filter(x->x.getType().equals(type)).collect(Collectors.toList());
+    private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
+        return StreamSupport.stream(ingredients.spliterator(), false)
+            .filter(x -> x.getType().equals(type))
+            .collect(Collectors.toList());
     }
 
     @ModelAttribute(name = "coffeeOrder")

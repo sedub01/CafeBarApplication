@@ -16,3 +16,7 @@ How it works? Spring scans all classes with @Component annotaion (even parent an
 - @RestController is a combination of the @Controller and @ResponseBody annotations. It is used to create RESTful web services that return data in JSON or XML format. When a controller method is annotated with the @RestController annotation, the result of its execution will be automatically serialized into the specified format and sent in response to the request.
 
 - @Service is used to mark classes that provide business logic or services in an application. Classes marked with this annotation are Spring beans and can be automatically scanned and injected into other beans such as controllers or other services.
+
+- @ModelAttribute is used to bind query parameters to model attributes. It allows you to get values from a query and bind them to specific model attributes. For example, when we need to use variable with specified name in html file.
+
+- @SessionAttributes is used to specify models (model attributes) to be stored in an HTTP session. This allows you to read data between requests within the same user session. For example, when we want to store something that won't disappear after moving to another page.

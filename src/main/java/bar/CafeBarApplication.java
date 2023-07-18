@@ -28,6 +28,7 @@ public class CafeBarApplication {
 			repo.save(new Ingredient("BCH", "Bitter Chocolate", Type.CHOCOLATE, 0));
 			repo.save(new Ingredient("CTO", "Chocolate", Type.TOPPING, 0));
 			repo.save(new Ingredient("MTO", "Marshmallow", Type.TOPPING, 0));
+			repo.save(new Ingredient("ESP", "Espresso", Type.ESPRESSO, 0));
 		};
 	}
 }

@@ -10,19 +10,30 @@
     <img th:src="@{/images/cafeIcon.png}" />
     <form method="POST" th:action="@{/register}" id="registrationForm">
         <label for="username">Username: </label>
-        <input type="text" name="username" /><br />
+        <input type="text" name="username" />
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <br />
         <label for="password">Password: </label>
-        <input type="password" name="password" /><br />
+        <input type="password" name="password" />
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <br />
         <label for="confirm">Confirm password: </label>
-        <input type="password" name="confirm" /><br />
+        <input type="password" name="confirm" />
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <br />
         <label for="fullname">Full name: </label>
-        <input type="text" name="fullname" /><br />
+        <input type="text" name="fullname" />
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <br />
         <label for="city">City: </label>
-        <input type="text" name="city" /><br />
+        <input type="text" name="city" />
+        <br />
         <label for="automatonCode">Automaton code: </label>
-        <input type="text" name="automatonCode" /><br />
+        <input type="text" name="automatonCode" />
+        <br />
         <label for="phone">Phone: </label>
-        <input type="text" name="phone" /><br />
+        <input type="text" name="phone" />
+        <br />
         <input type="submit" value="Register" />
     </form>
 </body>

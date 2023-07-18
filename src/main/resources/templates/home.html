@@ -6,8 +6,12 @@
 </head>
 
 <body>
-    <h1>Welcome to...</h1>
+    <h3 th:text="'Welcome' + (${fullname} ? ', ' + ${fullname} + '!' : '')" />
     <img th:src="@{/images/cafeIcon.png}" />
+    <!-- TODO think about placing in header -->
+    <form method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout" />
+    </form>
 </body>
 
 </html>

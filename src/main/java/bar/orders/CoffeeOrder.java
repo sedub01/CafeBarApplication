@@ -34,7 +34,7 @@ public class CoffeeOrder implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id") //If name == variable name, @Column is redundant
     private Long id;
-    private Date placedAt;
+    private Date placedAt = new Date();
 
     @NotBlank(message="Delivery name is required")
     private String deliveryName;

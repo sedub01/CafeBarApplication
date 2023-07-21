@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import bar.data.UserRepository;
+import bar.utils.Role;
 
 @Configuration
 @EnableMethodSecurity //for global security use (and @PreAuthorize too)
@@ -39,8 +40,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
             .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/design", "/orders").hasRole("USER")
-                    .requestMatchers("/admin/**").hasRole("USER")
+                    .requestMatchers("/design", "/orders").hasAuthority(Role.USER)
+                    .requestMatchers("/admin/**").hasAuthority(Role.ADMIN)
                     //resources below are available without registration
                     .requestMatchers("/", "/**").permitAll())
             .formLogin(login -> login //login conf. stage
@@ -56,6 +57,4 @@ public class SecurityConfig {
         return http.build();
         //TODO https://www.baeldung.com/spring-security-5-oauth2-login
     }
-
-    //TODO add ADMIN user
 }

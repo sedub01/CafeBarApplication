@@ -14,8 +14,8 @@ public class OrderAdminService {
         this.orderRepo = orderRepo;
     }
 
-    //if role != ADMIN, method won't invoke
-    @PreAuthorize("hasRole('ADMIN')")
+    //if role != ROLE_ADMIN, method won't invoke
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteAllOrders(){
         orderRepo.deleteAll();
     }

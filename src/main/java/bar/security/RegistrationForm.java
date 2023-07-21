@@ -2,6 +2,7 @@ package bar.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import bar.utils.Role;
 import lombok.Data;
 
 @Data
@@ -17,7 +18,7 @@ public class RegistrationForm {
     public User toUser(PasswordEncoder passwordEncoder) {
         return new User(
             username, passwordEncoder.encode(password),
-            fullname, city, automatonCode, phoneNumber
+            fullname, city, automatonCode, phoneNumber, Role.USER
         );
     }
     

@@ -1,12 +1,14 @@
 package bar.security;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import bar.utils.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,10 +38,15 @@ public class User implements UserDetails{
     private final String city;
     private final String automatonCode;
     private final String phoneNumber;
+    private final String authority;
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority(Role.USER));
+        if (authority != null && !authority.equals(Role.USER))
+            authorities.add(new SimpleGrantedAuthority(authority));
+        return authorities;
     }
 
     @Override
@@ -61,5 +68,4 @@ public class User implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
-    
 }

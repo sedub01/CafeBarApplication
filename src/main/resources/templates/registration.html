@@ -33,6 +33,7 @@
         <br />
         <label for="phone">Phone: </label>
         <input type="text" name="phone" />
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
         <br />
         <input type="submit" value="Register" />
     </form>

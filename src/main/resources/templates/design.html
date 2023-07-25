@@ -64,6 +64,7 @@
         <div>
             <h3>Name your coffee:</h3>
             <input type="text" th:field="*{name}" />
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             <br />
             <button>Submit Your Coffee</button>
         </div>

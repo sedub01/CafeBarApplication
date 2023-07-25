@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Cafe Bar</title>
+</head>
+
+<body>
+    <h1>Login</h1>
+    <img th:src="@{/images/cafeIcon.png}" />
+    <div th:if="${error}">
+        Unable to login. Check your username and password.
+    </div>
+    <p>
+        New here? Click <a th:href="@{/register}">here</a> to register.
+    </p>
+    <form method="POST" th:action="@{/login}" id="loginForm">
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username" /><br />
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" /><br />
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <input type="submit" value="Login" /><br />
+    </form>
+    <h3>Login with:</h3>
+    <p th:each="url : ${oauth2_urls}">
+        <a th:text="${url.key}" th:href="${url.value}">Client</a>
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/cafebar
+    username: postgres
+    password: 123456
+#Hibernate properties
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+#properties for OAuth2
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 544404547084-h8h7q3soptncsv62nu0hcv06ccngsbj4.apps.googleusercontent.com
+            client-secret: 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
+          github:
+            clientId: 35dfb809a48b82a270db
+            clientSecret: e6c5ea75f1ffa55d0cec84c17a390eb6434f6839
+
+server:
+  port: 8081

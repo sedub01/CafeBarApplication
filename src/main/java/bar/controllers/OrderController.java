@@ -1,6 +1,7 @@
 package bar.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import bar.data.OrderRepository;
 import bar.orders.CoffeeOrder;
+import bar.security.User;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,14 +35,16 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid CoffeeOrder order, 
+    public String processOrder(@Valid CoffeeOrder order,
         Errors errors,
-        SessionStatus sessionStatus){
+        SessionStatus sessionStatus,
+        @AuthenticationPrincipal User user){
         if (errors.hasErrors()){
             return "orderForm";
         }
         log.info("Order submitted: {}", order);
         orderRepo.save(order);
+        order.setUser(user);
         sessionStatus.setComplete(); 
         //there is garanty that session will be cleaned and ready for new order, when user will create coffee
 

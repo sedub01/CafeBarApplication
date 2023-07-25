@@ -7,3 +7,5 @@ Methods in UserDAO work without realisation, because this class extends JpaRepos
 As you can see Repositories are parameterized ([example](/src/main/java/bar/data/OrderRepository.java)). First parameter is Type of objects which will be contained in repository, second - ID field type. Spring repository already has all needed methods and implementations by notations.
 
 JPA demands entities to have constructor without arguments!
+
+If you don't want to create whole controller class for simple purposes (for example, home page), you can just create `WebConfig` class, mark it with @Configuration annotation, extend it from `WebMvcConfigurer` and override `addViewControllers` method. Then you can invoke `registry.addViewController(PATH).setViewName(VIEW)`, where `PATH` - path to view, `VIEW` - view itself.

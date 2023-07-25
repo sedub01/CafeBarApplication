@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
+import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
+import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.SecurityFilterChain;
 
 import bar.data.UserRepository;
@@ -50,11 +53,21 @@ public class SecurityConfig {
                     .defaultSuccessUrl("/design", true))
             .oauth2Login(oauth2Login -> oauth2Login
                     .loginPage("/login")
-                    .failureUrl("/loginFailure"))
+                    .failureUrl("/loginFailure")
+                    .authorizationEndpoint(endpoint -> endpoint
+                        .baseUri("/oauth2/authorize-client")
+                        .authorizationRequestRepository(authorizationRequestRepository())
+                        )
+                    )
             .logout(logout -> logout
                     .logoutSuccessUrl("/"));
-                    // .csrf().disable();
         return http.build();
-        //TODO https://www.baeldung.com/spring-security-5-oauth2-login
+        //Used https://www.baeldung.com/spring-security-5-oauth2-login
+    }
+
+    @Bean
+    public AuthorizationRequestRepository<OAuth2AuthorizationRequest>
+    authorizationRequestRepository() {
+        return new HttpSessionOAuth2AuthorizationRequestRepository();
     }
 }

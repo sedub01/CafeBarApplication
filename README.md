@@ -7,3 +7,4 @@ Below are links to *.md files to save space:
 - [explanations.md](/studyMaterial/explanations.md). This document explains hard to understand concepts of Spring Framework.
 - [annotations.md](/studyMaterial/annotations.md). This document contains description of all used annotations.
 - [postgresql.md](/studyMaterial/postgresql.md). This document contains interaction rules with PostgreSQL environment
+- [testing.md](/studyMaterial/testing.md). This document explains concepts of testing with JUnit and Mockito

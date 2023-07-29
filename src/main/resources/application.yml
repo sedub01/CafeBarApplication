@@ -25,5 +25,9 @@ spring:
             clientId: 35dfb809a48b82a270db
             clientSecret: e6c5ea75f1ffa55d0cec84c17a390eb6434f6839
 
+coffee:
+  orders:
+    pageSize: 10
+
 server:
   port: 8081

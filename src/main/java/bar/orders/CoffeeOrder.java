@@ -63,4 +63,12 @@ public class CoffeeOrder implements Serializable{
         coffees.add(coffee);
     }
 
+    public void autofillTextFields(User user) {
+        if (automatonCode == null || automatonCode.isEmpty()){
+            automatonCode = user.getAutomatonCode();
+        }
+        if (deliveryCity == null || deliveryCity.isEmpty()){
+            deliveryCity = user.getCity();
+        }
+    }
 }

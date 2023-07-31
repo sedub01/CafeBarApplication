@@ -21,7 +21,7 @@ import bar.utils.Role;
 public class SecurityConfig {
     
     //annotation means that this method creates and configures bean
-    //Method returns object, which will be registrated in Spring context as Bean 
+    //Method returns object, which will be registered in Spring context as Bean
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

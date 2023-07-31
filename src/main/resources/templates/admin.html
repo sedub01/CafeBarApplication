@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:insert="~{blocks/common :: common}">
     <title>Cafe Bar</title>
 </head>
 
 <body>
-    <h1>Admin page (for admins only)</h1>
-    <img th:src="@{/images/cafeIcon.png}" />
-    <form method="POST" th:action="@{/admin/deleteOrders}">
-        <input type="submit" value="delete orders" />
-    </form>
+    <div th:insert="~{blocks/navbar :: navbar}"></div>
+    <div class="container">
+        <div th:insert="~{blocks/jsconnect :: jsconnect}"></div>
+        <h1>Admin page (for admins only)</h1>
+        <form method="POST" th:action="@{/admin/deleteOrders}">
+            <input type="submit" value="delete orders" />
+        </form>
+    </div>
 </body>
 
 </html>

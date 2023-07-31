@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
+<head th:insert="~{blocks/common :: common}">
     <title>Cafe Bar</title>
 </head>
 
 <body>
-    <h3 th:text="'Welcome' + (${fullname} ? ', ' + ${fullname} + '!' : '')" />
-    <img th:src="@{/images/cafeIcon.png}" />
-    <!-- TODO think about placing in header -->
-    <form method="POST" th:action="@{/logout}">
-        <input type="submit" value="Logout" />
-    </form>
+    <div th:insert="~{blocks/navbar :: navbar}"></div>
+    <div class="container">
+        <div th:insert="~{blocks/jsconnect :: jsconnect}"></div>
+        <h3 th:text="'Welcome' + (${fullname} ? ', ' + ${fullname} + '!' : '')" />
+    </div>
 </body>
 
 </html>

@@ -55,10 +55,10 @@ public class SecurityConfig {
                     .loginPage("/login")
                     .failureUrl("/loginFailure")
                     .authorizationEndpoint(endpoint -> endpoint
-                        .baseUri("/oauth2/authorize-client")
-                        .authorizationRequestRepository(authorizationRequestRepository())
-                        )
-                    )
+                            .baseUri("/oauth2/authorize-client")
+                            .authorizationRequestRepository(authorizationRequestRepository()))
+                    .redirectionEndpoint(endpoint -> endpoint
+                            .baseUri("/oauth2/redirect")))
             .logout(logout -> logout
                     .logoutSuccessUrl("/"));
         return http.build();

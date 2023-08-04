@@ -15,7 +15,7 @@ import bar.utils.Role;
 
 @Profile("!prod")
 @Configuration
-public class DevelopmentConfig {
+public class DataLoaderConfig {
     
     @Bean
 	public CommandLineRunner ingredientsDataLoader(IngredientRepository repo) {
@@ -36,13 +36,12 @@ public class DevelopmentConfig {
 	@Bean
 	public CommandLineRunner usersDataLoader(UserRepository repo, PasswordEncoder encoder){
 		return args -> {
-			if (!repo.hasUser("admin")) //User can't contain String as ID, like in prev. method
+			if (!repo.existsByUsername("admin")) //User can't contain String as ID, like in prev. method
 				repo.save(new User("admin",
 					encoder.encode("password"),
 					"Admin Adminoff",
-					"New York",
-					"0990",
-					"+79042348912",
+					"09900",
+					"admin@gmail.com",
 					Role.ADMIN));
 		};
 	}

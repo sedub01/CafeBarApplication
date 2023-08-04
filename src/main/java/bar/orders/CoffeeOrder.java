@@ -38,8 +38,6 @@ public class CoffeeOrder implements Serializable{
 
     @NotBlank(message="Delivery name is required")
     private String deliveryName;
-    @NotBlank(message="City is required")
-    private String deliveryCity;
     @NotBlank(message="Automaton code is required")
     private String automatonCode;
     @CreditCardNumber(message="Not a valid credit card number")
@@ -66,9 +64,6 @@ public class CoffeeOrder implements Serializable{
     public void autofillTextFields(User user) {
         if (automatonCode == null || automatonCode.isEmpty()){
             automatonCode = user.getAutomatonCode();
-        }
-        if (deliveryCity == null || deliveryCity.isEmpty()){
-            deliveryCity = user.getCity();
         }
     }
 }

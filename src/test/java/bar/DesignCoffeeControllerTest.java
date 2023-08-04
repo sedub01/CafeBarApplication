@@ -86,8 +86,8 @@ public class DesignCoffeeControllerTest {
         //No need to use encoder
         when(userRepository.findByUsername("testuser"))
     		.thenReturn(new User("testuser", "testpass", 
-            "Test User", "Someville", "4809", 
-            "+79047128309", Role.USER));
+            "Test User", "4809",
+            "test.user@gmail.com", Role.USER));
     }
 
     @Test

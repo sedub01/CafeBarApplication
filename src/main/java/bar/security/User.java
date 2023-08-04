@@ -35,9 +35,8 @@ public class User implements UserDetails{
     private final String username;
     private final String password;
     private final String fullname;
-    private final String city;
     private final String automatonCode;
-    private final String phoneNumber;
+    private final String email;
     private final String authority;
     
     @Override

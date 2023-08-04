@@ -11,14 +11,13 @@ public class RegistrationForm {
     private final String username;
     private final String password;
     private final String fullname;
-    private final String city;
     private final String automatonCode;
-    private final String phoneNumber;
+    private final String email;
 
     public User toUser(PasswordEncoder passwordEncoder) {
         return new User(
             username, passwordEncoder.encode(password),
-            fullname, city, automatonCode, phoneNumber, Role.USER
+            fullname, automatonCode, email, Role.USER
         );
     }
     

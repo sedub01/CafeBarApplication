@@ -27,14 +27,11 @@
             <input type="text" name="fullname" />
             <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             <br />
-            <label for="city">City: </label>
-            <input type="text" name="city" />
-            <br />
             <label for="automatonCode">Automaton code: </label>
             <input type="text" name="automatonCode" />
             <br />
-            <label for="phone">Phone: </label>
-            <input type="text" name="phone" />
+            <label for="email">Email: </label>
+            <input type="email" name="email" />
             <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             <br />
             <input type="submit" value="Register" />

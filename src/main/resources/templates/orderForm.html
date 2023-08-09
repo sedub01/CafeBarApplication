@@ -36,28 +36,28 @@
                 Error</span>
             <br />
             <h3>Here's how I'll pay...</h3>
-            <label for="ccNumber">Credit Card #: </label>
-            <input type="text" th:field="*{ccNumber}" />
+            <label for="cardDetails.ccNumber">Credit Card #: </label>
+            <input type="text" th:field="*{cardDetails.ccNumber}" />
             <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             <span class="validationError"
-                th:if="${#fields.hasErrors('ccNumber')}"
-                th:errors="*{ccNumber}">CC Num
+                th:if="${#fields.hasErrors('cardDetails.ccNumber')}"
+                th:errors="*{cardDetails.ccNumber}">CC Num
                 Error</span>
             <br />
-            <label for="ccExpiration">Expiration: </label>
-            <input type="text" th:field="*{ccExpiration}" />
+            <label for="cardDetails.ccExpiration">Expiration: </label>
+            <input type="text" th:field="*{cardDetails.ccExpiration}" />
             <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             <span class="validationError"
-                th:if="${#fields.hasErrors('ccExpiration')}"
-                th:errors="*{ccExpiration}">CC
+                th:if="${#fields.hasErrors('cardDetails.ccExpiration')}"
+                th:errors="*{cardDetails.ccExpiration}">CC
                 Expiration Error</span>
             <br />
-            <label for="ccCVV">CVV: </label>
-            <input type="text" th:field="*{ccCVV}" />
+            <label for="cardDetails.ccCVV">CVV: </label>
+            <input type="text" th:field="*{cardDetails.ccCVV}" />
             <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             <span class="validationError"
-                th:if="${#fields.hasErrors('ccCVV')}"
-                th:errors="*{ccCVV}">CC CVV Error</span>
+                th:if="${#fields.hasErrors('cardDetails.ccCVV')}"
+                th:errors="*{cardDetails.ccCVV}">CC CVV Error</span>
             <br />
             <input type="submit" value="Submit Order" />
         </form>

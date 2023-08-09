@@ -8,12 +8,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import bar.utils.CardDetails;
 import bar.utils.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,6 +41,10 @@ public class User implements UserDetails{
     private final String automatonCode;
     private final String email;
     private final String authority;
+
+    @Valid
+    @OneToOne
+    private CardDetails cardDetails;
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -66,5 +73,9 @@ public class User implements UserDetails{
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public boolean hasCardDetails(){
+        return cardDetails != null;
     }
 }

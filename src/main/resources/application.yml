@@ -31,7 +31,3 @@ coffee:
 
 server:
   port: 8081
-  error:
-    whitelabel:
-      enabled: false
-    path: /error

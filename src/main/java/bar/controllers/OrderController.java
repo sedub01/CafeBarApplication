@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import bar.data.OrderRepository;
+import bar.data.UserRepository;
 import bar.orders.CoffeeOrder;
 import bar.security.User;
+import bar.service.OrderControllerService;
 import bar.utils.OrderProps;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -28,18 +30,24 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderController {
     
     private OrderRepository orderRepo;
+    private OrderControllerService orderControllerService;
+    private UserRepository userRepo;
     private OrderProps props;
 
     @Autowired
     public OrderController(OrderRepository orderRepo,
+        OrderControllerService orderControllerSerivce,
+        UserRepository userRepo,
         OrderProps props) {
         this.orderRepo = orderRepo;
+        this.orderControllerService = orderControllerSerivce;
+        this.userRepo = userRepo;
         this.props = props;
     }
 
     @GetMapping("/current")
     public String orderFrom(@AuthenticationPrincipal User user,
-      @ModelAttribute CoffeeOrder order){
+        @ModelAttribute CoffeeOrder order){
         order.autofillTextFields(user);
 
         return "orderForm";
@@ -56,7 +64,6 @@ public class OrderController {
         return "orderList";
     }
 
-
     @PostMapping
     public String processOrder(@Valid CoffeeOrder order,
         Errors errors,
@@ -65,14 +72,20 @@ public class OrderController {
         if (errors.hasErrors()){
             return "orderForm";
         }
-        log.info("Order submitted: {}", order);
+        var cardDetails = order.getCardDetails();
         //First, we set user, only then we save order!
+        if (!user.hasCardDetails())
+            user.setCardDetails(cardDetails);
         order.setUser(user);
+
+        orderControllerService.saveCardDetails(user, cardDetails);
+        userRepo.save(user);
         orderRepo.save(order);
         sessionStatus.setComplete(); 
+        log.info("Order submitted: {}", order);
         //there is garanty that session will be cleaned
         //and ready for new order, when user will create coffee
 
-        return "redirect:/";
+        return "redirect:/orders";
     }
 }

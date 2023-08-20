@@ -25,3 +25,17 @@ Below are links to *.md files to save space:
 * Junit
 * Mockito
 * OAuth
+
+## How to develop this app
+0. Download java 17
+1. Download VSCode
+2. Install Java Extension Pack in VSCode
+3. Install maven with console
+4. Download PostgreSQL
+5. Inject login and password
+
+If "...Connection to localhost:5432 refused..." error shown, run in console
+```
+sudo lsof -n -u postgres | grep LISTEN
+```
+and look for the port, if port in console and in `application.yml` are not the same, resolve dismatch

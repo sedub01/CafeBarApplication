@@ -27,10 +27,12 @@ import bar.coffee.Coffee;
 import bar.coffee.Ingredient;
 import bar.coffee.Ingredient.Type;
 import bar.controllers.DesignCoffeeController;
+import bar.data.GenderRepository;
 import bar.data.IngredientRepository;
 import bar.data.OrderRepository;
 import bar.data.UserRepository;
 import bar.orders.CoffeeOrder;
+import bar.security.Gender;
 import bar.security.User;
 import bar.utils.Role;
 
@@ -48,6 +50,8 @@ public class DesignCoffeeControllerTest {
     private OrderRepository orderRepository;
     @MockBean
     private UserRepository userRepository;
+    @MockBean
+    private GenderRepository genderRepository;
     @MockBean
     private PasswordEncoder encoder;
 
@@ -87,7 +91,8 @@ public class DesignCoffeeControllerTest {
         when(userRepository.findByUsername("testuser"))
     		.thenReturn(new User("testuser", "testpass", 
             "Test User", "4809",
-            "test.user@gmail.com", Role.USER));
+            "test.user@gmail.com", Role.USER,
+            new Gender()));
     }
 
     @Test

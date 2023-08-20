@@ -14,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
@@ -45,6 +46,9 @@ public class User implements UserDetails{
     @Valid
     @OneToOne
     private CardDetails cardDetails;
+
+    @ManyToOne
+    private final Gender gender;
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

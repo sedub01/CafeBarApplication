@@ -27,11 +27,11 @@ Below are links to *.md files to save space:
 * OAuth
 
 ## How to develop this app
-0. Download java 17
+0. Download java 17 ([link](https://www.oracle.com/java/technologies/downloads/))
 1. Download VSCode
 2. Install Java Extension Pack in VSCode
 3. Install maven with console
-4. Download PostgreSQL
+4. Download PostgreSQL ([YouTube](https://www.youtube.com/watch?v=-LwI4HMR_Eg))
 5. Inject login and password
 
 If "...Connection to localhost:5432 refused..." error shown, run in console
